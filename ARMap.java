@@ -14,6 +14,18 @@ public class ARMap
         }
     }
 
+    public static Register findRegisterWithName(String nameOfRegister)
+    {
+        for(Register r : ARMap.registers)
+        {
+            if(r.getHumanReadableName().equalsIgnoreCase(nameOfRegister))
+            {
+                return r;
+            }
+        }
+        return null;
+    }
+
     public static BinaryValue lookupInstruction(String instruction)
     {
         instruction = instruction.toUpperCase();
