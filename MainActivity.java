@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity
         this.startActivity(i);
     }
 
+    public void memoryButtonPressed(View v)
+    {
+        Intent i = new Intent(this, MemoryScreen.class);
+        this.startActivity(i);
+    }
+
     public void executeButtonPressed(View v)
     {
         //Read the instruction from the instructionET and appropriately

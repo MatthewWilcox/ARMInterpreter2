@@ -1,13 +1,21 @@
 package com.example.aweso.arminterpreter;
 
+import java.util.Arrays;
+
 public class ARMap
 {
+    //Final Fields
+    public static final int MEMORY_SIZE = 64;
     private static String[] instructions = {"ADD", "SUB"};
     private static int[] instructionMappings = {1112, 1624};
     public static Register[] registers = new Register[31];
+    public static int[] memory = new int[ARMap.MEMORY_SIZE];
 
     public static void init()
     {
+        //initialize memory
+        Arrays.fill(ARMap.memory, 0);
+
         for(int i = 0; i < ARMap.registers.length; i++)
         {
             ARMap.registers[i] = new Register("X" + i);
@@ -49,7 +57,7 @@ public class ARMap
         return ARMap.decimalToNBitBinary(opCode, 11);
     }
 
-    private static String decimalToNBitBinary(int opCode, int numBits)
+    public static String decimalToNBitBinary(long opCode, int numBits)
     {
         String answer = "";
         while(opCode > 0)
