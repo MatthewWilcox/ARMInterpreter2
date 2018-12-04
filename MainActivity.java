@@ -40,8 +40,13 @@ public class MainActivity extends AppCompatActivity
         //For example, if instructionET contained: ADD X0, X1, X2
         //Your code should grab the value from X1 and X2, add them
         //together, and store the result in X0
-        Instruction i = new Instruction(this.instructionET.getText().toString()); //"ADD X0,X1,    X2"
-        i.execute();
+        String allInstructions = (this.instructionET.getText().toString()); //"ADD X0,X1,    X2"
+        String[] takeThese = allInstructions.split("\n");
+        for (int i = 0; i<= takeThese.length-1; i++)
+        {
+            Instruction j = new Instruction(takeThese[i]); //"ADD X0,X1,    X2"
+            j.execute();
+        }
         Toast.makeText(this, "Execution Complete", Toast.LENGTH_SHORT).show();
     }
 }
