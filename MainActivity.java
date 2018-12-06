@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
 {
-    private EditText instructionET;
+    public EditText instructionET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +40,36 @@ public class MainActivity extends AppCompatActivity
         //For example, if instructionET contained: ADD X0, X1, X2
         //Your code should grab the value from X1 and X2, add them
         //together, and store the result in X0
-        String allInstructions = (this.instructionET.getText().toString()); //"ADD X0,X1,    X2"
-        String[] takeThese = allInstructions.split("\n");
-        for (int i = 0; i<= takeThese.length-1; i++)
+        String s = this.instructionET.getText().toString();
+        String[] instructions = s.split("\n");
+        System.out.println(instructions.length);
+        for(int i = 0; i < instructions.length; i++)
         {
-            Instruction j = new Instruction(takeThese[i]); //"ADD X0,X1,    X2"
-            j.execute();
+            Instruction instr = new Instruction(instructions[i]); //"ADD X0,X1,    X2"
+            instr.execute();
         }
         Toast.makeText(this, "Execution Complete", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addInstructionButtonPressed(View v)
+    {
+        Intent i = new Intent(this, InstructionPickerActivity.class);
+        this.startActivity(i);
+    }
+
+    public void clearButtonPressed(View v)
+    {
+        this.instructionET.setText("");
+    }
+
+    public void removeLastButtonPressed(View v)
+    {
+        String[] instructions = this.instructionET.getText().toString().split("\n");
+        String answer = instructions[0];
+        for(int i = 1; i < instructions.length-1; i++)
+        {
+            answer = answer + "\n" + instructions[i];
+        }
+        this.instructionET.setText(answer);
     }
 }

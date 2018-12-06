@@ -10,6 +10,15 @@ public class ARMap
     private static int[] instructionMappings = {1112, 1624};
     public static Register[] registers = new Register[31];
     public static int[] memory = new int[ARMap.MEMORY_SIZE];
+    public static String[] instructionSyntaxMap = {
+            "ADD DestReg, SrcReg1, SrcReg2",
+            "ADDI DestReg, SrcReg1, Immediate",
+            "SUB DestReg, SrcReg1, SrcReg2",
+            "SUBI DestReg, SrcReg1, Immediate",
+            "LDUR DestReg, [BaseAddressReg, Offset]",
+            "STUR SrcReg, [BaseAddressReg, Offset]",
+            "MOVZ DestReg, Immediate"
+    };
 
     public static void init()
     {
